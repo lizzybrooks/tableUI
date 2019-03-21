@@ -4,18 +4,19 @@ background(200);
 fill('pink');
 rect(100, 100, 100,100);
 // Get a random element from an array
-name();
+keyPressed();
 }
 
 function draw() {
 }
 
-function name() {
+function keyPressed() {
   fill('black');
   var words = [ "apple", "bear", "cat", "dog" ];
   textSize(25);
-  text(random(words),100,100);  // Displays one of the four words
-  text(random(words),200,150);
-  text(random(words),50,150);
-  text(random(words),100,200);
+  text(words,100,100);
+  if (keyCode === LEFT_ARROW) {
+    words.splice(1,1);
+    text(words,200,200);
+  }
 }
