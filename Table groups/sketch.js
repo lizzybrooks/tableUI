@@ -21,6 +21,7 @@ function table (x,y){
   square(x, y, 55);
 }*/
 
+
 var boxes = [];
 
 function setup() {
@@ -32,12 +33,16 @@ function setup() {
         boxes.push(new Box(300,300)); // bottom right
         boxes.push(new Box(300,100)); // top right
 
+
+
 }
+// global vars
 
 function draw() {
     background(200, 200, 200); // background
     for (var i = 0; i < boxes.length; i++) {
         boxes[i].show();
+
     }
 }
 
@@ -77,14 +82,17 @@ function mouseReleased() {
 }
 
 function Box(xpos,ypos) {
+
     this.xpos = xpos; // starting x
     this.ypos = ypos; // starting y
+
     this.boxsize = 50; // size of square
     this.boxover = false;
     this.locked = false;
     this.xoffset = 0;
     this.yoffset = 0;
     rectMode(RADIUS);
+
 
     this.show = function() {
 
@@ -106,5 +114,21 @@ function Box(xpos,ypos) {
             fill(121, 157, 216); // color of boxes
         }
         rect(this.xpos, this.ypos, this.boxsize, this.boxsize, 7);
+        stroke(2);
+        strokeWeight(2);
+        fill(0);
+        var words = [ "apple", "bear", "cat", "dog" ];
+        text(words[0],xpos+50,ypos+50);
     };
 }
+
+
+//function name() {
+  //fill('black');
+/*
+  textSize(25);
+  text(words[0],100,100);  // Displays one of the four words
+  text(words[1],200,150);
+  text(words[2],50,150);
+  text(words[3],100,200);*/
+//}
