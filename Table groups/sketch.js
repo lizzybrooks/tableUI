@@ -1,25 +1,4 @@
-/*function setup() {
 
- createCanvas(500, 500);
-
-}
-
-function draw() {
-  // put drawing code here\
-table (10,50) // upper left
-table (100,50) // upper right
-table (10,140) //bottom left
-table (100,140) // bottom right
-
-
-}
-
-function table (x,y){
-  fill(218, 227, 242);
-  stroke(40, 98, 193);
-  strokeWeight(1);
-  square(x, y, 55);
-}*/
 
 let names_ = ['apple', 'pear', 'orange', 'banana', 'iphone', 'android', 'burner', 'Nokia','Fitbit', 'watch', 'rolex', 'clock', 'laptop', 'desktop', 'pc', 'tablet'];
 let name_arr = random_sets(shuffle(names_)); // this is where the name array is randomized and set up as a 2D array for later
@@ -45,7 +24,7 @@ function draw() {
     background(200, 200, 200); // background
     for (var i = 0; i < boxes.length; i++) {
         boxes[i].show();
-        boxes[i].text(name_arr[i%name_arr.length]); // ok it's later!
+        boxes[i].text(name_arr[i%name_arr.length]); //
 
     }
 }
