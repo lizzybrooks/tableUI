@@ -1,27 +1,6 @@
-/*function setup() {
-
- createCanvas(500, 500);
-
-}
-
-function draw() {
-  // put drawing code here\
-table (10,50) // upper left
-table (100,50) // upper right
-table (10,140) //bottom left
-table (100,140) // bottom right
 
 
-}
-
-function table (x,y){
-  fill(218, 227, 242);
-  stroke(40, 98, 193);
-  strokeWeight(1);
-  square(x, y, 55);
-}*/
-
-let names_ = ['apple', 'pear', 'orange', 'banana', 'iphone', 'android', 'burner', 'Nokia','Fitbit', 'watch', 'rolex', 'clock', 'laptop', 'desktop', 'pc', 'tablet'];
+let names_ = ['ylva', 'pear', 'orange', 'banana', 'iphone', 'android', 'burner', 'Nokia','Fitbit', 'watch', 'rolex', 'clock', 'laptop', 'desktop', 'pc', 'tablet'];
 let name_arr = random_sets(shuffle(names_)); // this is where the name array is randomized and set up as a 2D array for later
 
 
@@ -45,7 +24,7 @@ function draw() {
     background(200, 200, 200); // background
     for (var i = 0; i < boxes.length; i++) {
         boxes[i].show();
-        boxes[i].text(name_arr[i%name_arr.length]); // ok it's later!
+        boxes[i].text(name_arr[i%name_arr.length]); //
 
     }
 }
@@ -103,9 +82,11 @@ function Box(xpos,ypos) {
         if (mouseX > this.xpos - this.boxsize && mouseX < this.xpos + this.boxsize &&
             mouseY > this.ypos - this.boxsize && mouseY < this.ypos + this.boxsize) {
             this.boxover = true;
+              fill(121, 157, 216); //box color when mouse hovers
           //  fill(0); // color when dragged
 
             if (mouseIsPressed && this.boxover == true) {
+                fill(121, 157, 216);//box color when mouse preseed
                 stroke(0, 0, 0); // color of border when dragged
                 strokeWeight(3); // thickness of border when dragged
             } else {
@@ -115,7 +96,7 @@ function Box(xpos,ypos) {
         } else {
             this.boxover = false;
             noStroke();
-            fill(121, 157, 216); // color of boxes
+            fill(121, 157, 216); // color of boxes when mouse not over box
         }
         rect(this.xpos, this.ypos, this.boxsize, this.boxsize, 7);
         stroke(2);
