@@ -102,12 +102,15 @@ function Box(xpos, ypos, boxsizex, boxsizey) {
             mouseY > this.ypos - this.boxsizey && mouseY < this.ypos + this.boxsizey) {
             this.boxover = true;
           //  fill(0); // color when dragged
+          stroke(0, 0, 0); // color of border when dragged
+          strokeWeight(3); // thickness of border when dragged
 
             if (mouseIsPressed && this.boxover == true) {
                 stroke(0, 0, 0); // color of border when dragged
                 strokeWeight(3); // thickness of border when dragged
             } else {
-                noStroke();
+              stroke(0, 0, 0); // color of border when dragged
+              strokeWeight(3); // thickness of border when dragged
             }
 
         } else {
@@ -116,9 +119,12 @@ function Box(xpos, ypos, boxsizex, boxsizey) {
             fill(121, 157, 216); // color of boxes
         }
         rect(this.xpos, this.ypos, this.boxsizex, this.boxsizey, 7);
+
         stroke(2);
-        strokeWeight(2);
-        fill(0);
+        strokeWeight(3);
+        stroke(0,0,0)
+        stroke
+
       //  var words = [ "apple", "bear", "cat", "dog" ];
       //  text(words[0],xpos+50,ypos+50);
     };
@@ -126,6 +132,7 @@ function Box(xpos, ypos, boxsizex, boxsizey) {
     this.text = function (text_arr) {
       push();
       strokeWeight(0);
+      fill(0,0,0)
       text(text_arr[0], this.xpos-boxsizex-45, this.ypos);
       text(text_arr[1], this.xpos+boxsizex+5, this.ypos);
       text(text_arr[2], this.xpos-20, this.ypos-boxsizey-10);
