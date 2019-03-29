@@ -1,4 +1,5 @@
-let names_ = ['apple', 'pear', 'orange', 'banana', 'iphone', 'android', 'burner', 'Nokia','Fitbit', 'watch', 'rolex', 'clock', 'laptop', 'desktop', 'pc', 'tablet'];
+
+let names_ = ['apple', 'pear', 'orange', 'banana', 'iphone', 'android', 'burner', 'Nokia','Fitbit', 'watch', 'rolex', 'clock', 'laptop', 'desktop', 'pc', 'tablet']
 let name_arr = random_sets(shuffle(names_)); // this is where the name array is randomized and set up as a 2D array for later
 
 var squareButton;
@@ -43,7 +44,7 @@ function draw() {
     background(200, 200, 200); // background
     for (var i = 0; i < boxes.length; i++) {
         boxes[i].show();
-        boxes[i].text(name_arr[i%name_arr.length]); // ok it's later!
+        boxes[i].text(name_arr[i%name_arr.length]); //
 
     }
 }
@@ -101,11 +102,13 @@ function Box(xpos, ypos, boxsizex, boxsizey) {
         if (mouseX > this.xpos - this.boxsizex && mouseX < this.xpos + this.boxsizex &&
             mouseY > this.ypos - this.boxsizey && mouseY < this.ypos + this.boxsizey) {
             this.boxover = true;
+              fill(121, 157, 216); //box color when mouse hovers
           //  fill(0); // color when dragged
           stroke(0, 0, 0); // color of border when dragged
           strokeWeight(3); // thickness of border when dragged
 
             if (mouseIsPressed && this.boxover == true) {
+                fill(121, 157, 216);//box color when mouse preseed
                 stroke(0, 0, 0); // color of border when dragged
                 strokeWeight(3); // thickness of border when dragged
             } else {
@@ -116,7 +119,7 @@ function Box(xpos, ypos, boxsizex, boxsizey) {
         } else {
             this.boxover = false;
             noStroke();
-            fill(121, 157, 216); // color of boxes
+            fill(121, 157, 216); // color of boxes when mouse not over box
         }
         rect(this.xpos, this.ypos, this.boxsizex, this.boxsizey, 7);
 
