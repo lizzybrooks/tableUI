@@ -16,19 +16,6 @@ table (100,140) // bottom right
 }
 
 function table (x,y){
-  fill(218, 227, 242);
-  stroke(40, 98, 193);
-  strokeWeight(1);
-  square(x, y, 55);
-}*/
-
-let names_ = ['apple', 'pear', 'orange', 'banana', 'iphone', 'android', 'burner', 'Nokia','Fitbit', 'watch', 'rolex', 'clock', 'laptop', 'desktop', 'pc', 'tablet'];
-let name_arr = random_sets(shuffle(names_)); // this is where the name array is randomized and set up as a 2D array for later
-
-
-var boxes = [];
-var button;
-
 function setup() {
     // createCanvas(displayWidth,displayHeight);
     createCanvas(500, 500);

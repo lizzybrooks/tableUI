@@ -6,6 +6,7 @@ var squareButton;
 var rectButton;
 var vertButton;
 var boxes = [];
+var button;
 
 function setup() {
     // createCanvas(displayWidth,displayHeight);
@@ -16,6 +17,9 @@ function setup() {
         boxes.push(new Box((windowWidth/4)*3, windowHeight/4, 125, 125)); // bottom right
         boxes.push(new Box((windowWidth/4)*3, (windowHeight/4)*3, 125, 125)); // top right
 
+        button = createButton('randomize');
+        button.position(10, 19);
+        button.mousePressed(function(){name_arr = random_sets(shuffle(names_))});
         squareButton = createButton('New Square Table');
         squareButton.position(19, 19);
         squareButton.mousePressed(addNewSquareBox);
