@@ -1,0 +1,44 @@
+var rec1;
+
+var rectangles={
+  height: 100,
+  width: 250,
+  }
+
+function setup() {
+
+createCanvas(500, 500);
+//background(300)
+callbuttons();
+}
+
+function draw() {
+}
+
+function drawbutton1( x, y, a, b, c,) {
+  textSize(30);
+  var col = color(a, b, c);
+  var button = createButton("hello there");
+  button.position(x, y);
+  button.style("background-color", col);
+  button.style("border-radius", "20%");
+  button.style("font-size", "20px");
+  button.mousePressed(drawshow1);
+  button.style("cursor","pointer");
+  button.mouseReleased(setup);
+  button.size(120,40);
+  }
+
+    function drawshow1() {
+    //fill(215, 227, 247);
+    rec1 = rect(105, 340, 300, rectangles.height);
+    //rec1.show();
+    textSize(14);
+    fill(0);
+    text("Big data is all the information collected from users of technology, which can be analysed to reveal patterns in human behavior and decisions.", 110, 350, 300, 100);
+  }
+
+  function callbuttons(){
+    drawbutton1(100, 100, 200, 153, 247);
+  
+  }
