@@ -1,5 +1,6 @@
 
-let names_ = ['apple', 'pear', 'orange', 'banana', 'iphone', 'android', 'burner', 'Nokia','Fitbit', 'watch', 'rolex', 'clock', 'laptop', 'desktop', 'pc', 'tablet']
+//let names_ = ['apple', 'pear', 'orange', 'banana', 'iphone', 'android', 'burner', 'Nokia','Fitbit', 'watch', 'rolex', 'clock', 'laptop', 'desktop', 'pc', 'tablet']
+let names_ = ['']
 let name_arr = random_sets(shuffle(names_)); // this is where the name array is randomized and set up as a 2D array for later
 
 var squareButton;
@@ -30,7 +31,22 @@ function setup() {
         vertButton.position(19, 60 );
         vertButton.mousePressed(addNewVertRectBox);
 
+        var name = createInput('name');
+         name.input(myInputEvent);
+         name.position(60,60);
+         var button = createButton('Add Names')
+         button.position(100,100);
+         button.mousePressed(addNames);
+
 }
+
+function myInputEvent(){
+  studentName = this.value();
+}
+function addNames(){
+  names_.push(studentName);
+}
+
 
 function addNewSquareBox() {
   boxes.push(new Box(random(windowWidth), random(windowHeight), 125, 125));
@@ -53,8 +69,6 @@ function draw() {
     }
 }
 
-
-
 function mousePressed() {
     for (var i = 0; i < boxes.length; i++) {
         //checking to see if the mouse is over the box and turning it white if it is
@@ -70,7 +84,6 @@ function mousePressed() {
         boxes[i].yoffset = mouseY - boxes[i].ypos
         print(boxes[i].locked);
     }
-    return false;
 }
 
 function mouseDragged() {
