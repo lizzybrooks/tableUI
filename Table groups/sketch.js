@@ -1,51 +1,50 @@
-/*function setup() {
 
- createCanvas(500, 500);
-
-}
-
-function draw() {
-  // put drawing code here\
-table (10,50) // upper left
-table (100,50) // upper right
-table (10,140) //bottom left
-table (100,140) // bottom right
-
-
-}
-
-function table (x,y){
-  fill(218, 227, 242);
-  stroke(40, 98, 193);
-  strokeWeight(1);
-  square(x, y, 55);
-}*/
-
-let names_ = ['apple', 'pear', 'orange', 'banana', 'iphone', 'android', 'burner', 'Nokia','Fitbit', 'watch', 'rolex', 'clock', 'laptop', 'desktop', 'pc', 'tablet'];
+let names_ = ['apple', 'pear', 'orange', 'banana', 'iphone', 'android', 'burner', 'Nokia','Fitbit', 'watch', 'rolex', 'clock', 'laptop', 'desktop', 'pc', 'tablet']
 let name_arr = random_sets(shuffle(names_)); // this is where the name array is randomized and set up as a 2D array for later
 
-
+var squareButton;
+var rectButton;
+var vertButton;
 var boxes = [];
 
 function setup() {
     // createCanvas(displayWidth,displayHeight);
-    createCanvas(500, 500);
+    createCanvas(windowWidth, windowHeight);
 
-        boxes.push(new Box(100,300)); //bottom left
-        boxes.push(new Box(100,100)); // top left
-        boxes.push(new Box(300,300)); // bottom right
-        boxes.push(new Box(300,100)); // top right
+        boxes.push(new Box(windowWidth/4, windowHeight/4, 125, 125)); //bottom left
+        boxes.push(new Box(windowWidth/4, (windowHeight/4)*3, 125, 125)); // top left
+        boxes.push(new Box((windowWidth/4)*3, windowHeight/4, 125, 125)); // bottom right
+        boxes.push(new Box((windowWidth/4)*3, (windowHeight/4)*3, 125, 125)); // top right
 
-
+        squareButton = createButton('New Square Table');
+        squareButton.position(19, 19);
+        squareButton.mousePressed(addNewSquareBox);
+        rectButton = createButton('New Horizaontal Rectangle Table');
+        rectButton.position(19, 40);
+        rectButton.mousePressed(addNewRectBox);
+        vertButton = createButton('New Vertical Rectangle Table');
+        vertButton.position(19, 60 );
+        vertButton.mousePressed(addNewVertRectBox);
 
 }
-// global vars
+
+function addNewSquareBox() {
+  boxes.push(new Box(random(windowWidth), random(windowHeight), 125, 125));
+}
+
+function addNewRectBox() {
+  boxes.push(new Box(random(windowWidth), random(windowHeight), 125, 62.5));
+}
+
+function addNewVertRectBox() {
+  boxes.push(new Box(random(windowWidth), random(windowHeight), 62.5, 125));
+}
 
 function draw() {
     background(200, 200, 200); // background
     for (var i = 0; i < boxes.length; i++) {
         boxes[i].show();
-        boxes[i].text(name_arr[i%name_arr.length]); // ok it's later!
+        boxes[i].text(name_arr[i%name_arr.length]); //
 
     }
 }
@@ -85,12 +84,12 @@ function mouseReleased() {
     }
 }
 
-function Box(xpos,ypos) {
+function Box(xpos, ypos, boxsizex, boxsizey) {
 
     this.xpos = xpos; // starting x
     this.ypos = ypos; // starting y
-
-    this.boxsize = 50; // size of square
+    this.boxsizex = boxsizex; // size of square
+    this.boxsizey = boxsizey;
     this.boxover = false;
     this.locked = false;
     this.xoffset = 0;
@@ -100,27 +99,35 @@ function Box(xpos,ypos) {
 
     this.show = function() {
 
-        if (mouseX > this.xpos - this.boxsize && mouseX < this.xpos + this.boxsize &&
-            mouseY > this.ypos - this.boxsize && mouseY < this.ypos + this.boxsize) {
+        if (mouseX > this.xpos - this.boxsizex && mouseX < this.xpos + this.boxsizex &&
+            mouseY > this.ypos - this.boxsizey && mouseY < this.ypos + this.boxsizey) {
             this.boxover = true;
+              fill(121, 157, 216); //box color when mouse hovers
           //  fill(0); // color when dragged
+          stroke(0, 0, 0); // color of border when dragged
+          strokeWeight(3); // thickness of border when dragged
 
             if (mouseIsPressed && this.boxover == true) {
+                fill(121, 157, 216);//box color when mouse preseed
                 stroke(0, 0, 0); // color of border when dragged
                 strokeWeight(3); // thickness of border when dragged
             } else {
-                noStroke();
+              stroke(0, 0, 0); // color of border when dragged
+              strokeWeight(3); // thickness of border when dragged
             }
 
         } else {
             this.boxover = false;
             noStroke();
-            fill(121, 157, 216); // color of boxes
+            fill(121, 157, 216); // color of boxes when mouse not over box
         }
-        rect(this.xpos, this.ypos, this.boxsize, this.boxsize, 7);
+        rect(this.xpos, this.ypos, this.boxsizex, this.boxsizey, 7);
+
         stroke(2);
-        strokeWeight(2);
-        fill(0);
+        strokeWeight(3);
+        stroke(0,0,0)
+        stroke
+
       //  var words = [ "apple", "bear", "cat", "dog" ];
       //  text(words[0],xpos+50,ypos+50);
     };
@@ -128,10 +135,11 @@ function Box(xpos,ypos) {
     this.text = function (text_arr) {
       push();
       strokeWeight(0);
-      text(text_arr[0], this.xpos-90, this.ypos);
-      text(text_arr[1], this.xpos+60, this.ypos);
-      text(text_arr[2], this.xpos-20, this.ypos-60);
-      text(text_arr[3], this.xpos-20, this.ypos+65);
+      fill(0,0,0)
+      text(text_arr[0], this.xpos-boxsizex-45, this.ypos);
+      text(text_arr[1], this.xpos+boxsizex+5, this.ypos);
+      text(text_arr[2], this.xpos-20, this.ypos-boxsizey-10);
+      text(text_arr[3], this.xpos-20, this.ypos+boxsizey+15);
       pop();
     };
 
