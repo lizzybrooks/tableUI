@@ -9,6 +9,7 @@ var vertButton;
 var boxes = [];
 var button;
 
+
 function setup() {
     // createCanvas(displayWidth,displayHeight);
     createCanvas(windowWidth, windowHeight);
@@ -19,8 +20,13 @@ function setup() {
         boxes.push(new Box((windowWidth/4)*3, (windowHeight/4)*3, 125, 125)); // top right
 
         button = createButton('randomize');
-        button.position(10, 19);
+        button.position(10, 210);
+        button.size(120,40);
+        button.style("color", "blue");
+        button.style("border-radius", "40%");
+        button.style("font-size", "20px");
         button.style("cursor","pointer");
+      //  button.style("background-color", 0);
         button.mousePressed(function(){name_arr = random_sets(shuffle(names_))});
         squareButton = createButton('New Square Table');
         squareButton.position(100, 19);
@@ -35,13 +41,16 @@ function setup() {
         vertButton.style("cursor","pointer");
         vertButton.mousePressed(addNewVertRectBox);
 
-        var name = createInput('Insert Names Here');
+        var name = createInput('Insert Name Here');
          name.input(myInputEvent);
          name.position(20,150); //location of search box
          name.style("font-size", "20px");
-         name.style("border", "1px");
+         name.style("border-style", "solid");
+         name.style("border-width","1px");
+         name.style("border-color", "blue");
          name.style("border-radius", "4px");
          name.style("padding", "8px");
+        // name.style("border", "#ff0000");
         // name.style("background-color", "200,200,200");
 
 
