@@ -20,23 +20,36 @@ function setup() {
 
         button = createButton('randomize');
         button.position(10, 19);
+        button.style("cursor","pointer");
         button.mousePressed(function(){name_arr = random_sets(shuffle(names_))});
         squareButton = createButton('New Square Table');
-        squareButton.position(19, 19);
+        squareButton.position(100, 19);
+        squareButton.style("cursor","pointer");
         squareButton.mousePressed(addNewSquareBox);
         rectButton = createButton('New Horizaontal Rectangle Table');
+        rectButton.style("cursor","pointer");
         rectButton.position(19, 40);
         rectButton.mousePressed(addNewRectBox);
         vertButton = createButton('New Vertical Rectangle Table');
         vertButton.position(19, 60 );
+        vertButton.style("cursor","pointer");
         vertButton.mousePressed(addNewVertRectBox);
 
-        var name = createInput('name');
+        var name = createInput('Insert Names Here');
          name.input(myInputEvent);
-         name.position(60,60);
+         name.position(20,150); //location of search box
+         name.style("font-size", "20px");
+         name.style("border", "1px");
+         name.style("border-radius", "4px");
+         name.style("padding", "8px");
+        // name.style("background-color", "200,200,200");
+
+
          var button = createButton('Add Names')
          button.position(100,100);
          button.mousePressed(addNames);
+         button.style("cursor","pointer");
+         button.mouseReleased(setup);
 
 }
 
