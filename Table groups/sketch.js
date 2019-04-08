@@ -1,5 +1,5 @@
-
-let names_ = ['apple', 'pear', 'orange', 'banana', 'iphone', 'android', 'burner', 'Nokia','Fitbit', 'watch', 'rolex', 'clock', 'laptop', 'desktop', 'pc', 'tablet']
+//let names_ = ['apple', 'pear', 'orange', 'banana', 'iphone', 'android', 'burner', 'Nokia','Fitbit', 'watch', 'rolex', 'clock', 'laptop', 'desktop', 'pc', 'tablet']
+let names_ = ['']
 let name_arr = random_sets(shuffle(names_)); // this is where the name array is randomized and set up as a 2D array for later
 
 var squareButton;
@@ -7,6 +7,7 @@ var rectButton;
 var vertButton;
 var boxes = [];
 var button;
+
 
 function setup() {
     // createCanvas(displayWidth,displayHeight);
@@ -18,19 +19,55 @@ function setup() {
         boxes.push(new Box((windowWidth/4)*3, (windowHeight/4)*3, 125, 125)); // top right
 
         button = createButton('randomize');
-        button.position(10, 19);
+        button.position(10, 210);
+        button.size(120,40);
+        button.style("color", "blue");
+        button.style("border-radius", "40%");
+        button.style("font-size", "20px");
+        button.style("cursor","pointer");
+      //  button.style("background-color", 0);
         button.mousePressed(function(){name_arr = random_sets(shuffle(names_))});
         squareButton = createButton('New Square Table');
-        squareButton.position(19, 19);
+        squareButton.position(100, 19);
+        squareButton.style("cursor","pointer");
         squareButton.mousePressed(addNewSquareBox);
         rectButton = createButton('New Horizaontal Rectangle Table');
+        rectButton.style("cursor","pointer");
         rectButton.position(19, 40);
         rectButton.mousePressed(addNewRectBox);
         vertButton = createButton('New Vertical Rectangle Table');
         vertButton.position(19, 60 );
+        vertButton.style("cursor","pointer");
         vertButton.mousePressed(addNewVertRectBox);
 
+        var name = createInput('Insert Name Here');
+         name.input(myInputEvent);
+         name.position(20,150); //location of search box
+         name.style("font-size", "20px");
+         name.style("border-style", "solid");
+         name.style("border-width","1px");
+         name.style("border-color", "blue");
+         name.style("border-radius", "4px");
+         name.style("padding", "8px");
+        // name.style("border", "#ff0000");
+        // name.style("background-color", "200,200,200");
+
+
+         var button = createButton('Add Names')
+         button.position(100,100);
+         button.mousePressed(addNames);
+         button.style("cursor","pointer");
+         button.mouseReleased(setup);
+
 }
+
+function myInputEvent(){
+  studentName = this.value();
+}
+function addNames(){
+  names_.push(studentName);
+}
+
 
 function addNewSquareBox() {
   boxes.push(new Box(random(windowWidth), random(windowHeight), 125, 125));
@@ -53,8 +90,6 @@ function draw() {
     }
 }
 
-
-
 function mousePressed() {
     for (var i = 0; i < boxes.length; i++) {
         //checking to see if the mouse is over the box and turning it white if it is
@@ -70,7 +105,6 @@ function mousePressed() {
         boxes[i].yoffset = mouseY - boxes[i].ypos
         print(boxes[i].locked);
     }
-    return false;
 }
 
 function mouseDragged() {
