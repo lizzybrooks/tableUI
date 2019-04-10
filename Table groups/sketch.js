@@ -1,5 +1,5 @@
 
-//let names_ = ['apple', 'pear', 'orange', 'banana', 'iphone', 'android', 'burner', 'Nokia','Fitbit', 'watch', 'rolex', 'clock', 'laptop', 'desktop', 'pc', 'tablet']
+// let names_ = [ 'banana', 'iphone', 'android', 'burner', 'Nokia','Fitbit', 'watch', 'rolex', 'clock', 'laptop', 'desktop', 'pc', 'tablet']
 let names_ = ['']
 let name_arr = random_sets(shuffle(names_)); // this is where the name array is randomized and set up as a 2D array for later
 
@@ -19,12 +19,12 @@ function setup() {
         boxes.push(new Box((windowWidth/4)*3, (windowHeight/4)*3, 125, 125)); // top right
 
         button = createButton('randomize');
-        button.position(10, 19);
+        button.position(19, 80);
         button.mousePressed(function(){name_arr = random_sets(shuffle(names_))});
         squareButton = createButton('New Square Table');
         squareButton.position(19, 19);
         squareButton.mousePressed(addNewSquareBox);
-        rectButton = createButton('New Horizaontal Rectangle Table');
+        rectButton = createButton('New Horizontal Rectangle Table');
         rectButton.position(19, 40);
         rectButton.mousePressed(addNewRectBox);
         vertButton = createButton('New Vertical Rectangle Table');
@@ -37,6 +37,7 @@ function setup() {
          var button = createButton('Add Names')
          button.position(100,100);
          button.mousePressed(addNames);
+
 
 }
 
