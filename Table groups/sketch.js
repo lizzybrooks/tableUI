@@ -1,47 +1,92 @@
-/*function setup() {
+let names_ = ['apple', 'pear', 'orange', 'banana', 'iphone', 'android', 'burner', 'Nokia','Fitbit', 'watch', 'rolex', 'clock', 'laptop', 'desktop', 'pc', 'tablet']
+//let names_ = ['','','','','','','','','','','','','','','',''];
+let name_cnt = 0
+let name_arr = random_sets(shuffle(names_)); // this is where the name array is randomized and set up as a 2D array for later
 
- createCanvas(500, 500);
-
-}
-
-function draw() {
-  // put drawing code here\
-table (10,50) // upper left
-table (100,50) // upper right
-table (10,140) //bottom left
-table (100,140) // bottom right
-
-
-}
-
-function table (x,y){
-  fill(218, 227, 242);
-  stroke(40, 98, 193);
-  strokeWeight(1);
-  square(x, y, 55);
-}*/
-
+var squareButton;
+var rectButton;
+var vertButton;
 var boxes = [];
+var randomButton;
 
 function setup() {
     // createCanvas(displayWidth,displayHeight);
-    createCanvas(500, 500);
+    createCanvas(windowWidth, windowHeight);
 
-        boxes.push(new Box(100,300)); //bottom left
-        boxes.push(new Box(100,100)); // top left
-        boxes.push(new Box(300,300)); // bottom right
-        boxes.push(new Box(300,100)); // top right
+        boxes.push(new Box(windowWidth/3.2, windowHeight/4+50, 125, 125)); //bottom left
+        boxes.push(new Box(windowWidth/3.2, (windowHeight/4)*3, 125, 125)); // top left
+        boxes.push(new Box((windowWidth/3.5)*2.6, windowHeight/4+50, 125, 125)); // bottom right
+        boxes.push(new Box((windowWidth/3.5)*2.6, (windowHeight/4)*3, 125, 125)); // top right
 
+        randomButton = createButton('randomize');
+
+        randomButton.position(windowWidth/2+150, 19);
+        randomButton.size(120,40);
+        randomButton.style("color", "blue");
+        randomButton.style("border-radius", "40%");
+        randomButton.style("font-size", "20px");
+        randomButton.style("cursor","pointer");
+        // randomButton.mousePressed(addNames);
+        randomButton.mousePressed(function(){
+          addNames();
+          name_arr = random_sets(shuffle(names_))
+        });
+
+        squareButton = createButton('New Square Table');
+        squareButton.position(19, 19);
+        squareButton.style("cursor","pointer");
+        squareButton.mousePressed(addNewSquareBox);
+        rectButton = createButton('New Horizaontal Rectangle Table');
+        rectButton.style("cursor","pointer");
+        rectButton.position(19, 40);
+        rectButton.mousePressed(addNewRectBox);
+        vertButton = createButton('New Vertical Rectangle Table');
+        vertButton.position(19, 60 );
+        vertButton.style("cursor","pointer");
+        vertButton.mousePressed(addNewVertRectBox);
+
+        var name = createInput('Insert Name Here');
+         name.input(myInputEvent);
+         name.position(windowWidth/2-100, 19); //location of search box
+         name.style("font-size", "20px");
+         name.style("border-style", "solid");
+         name.style("border-width","1px");
+         name.style("border-color", "blue");
+         name.style("border-radius", "4px");
+         name.style("padding", "8px");
+        // name.style("border", "#ff0000");
+        // name.style("background-color", "200,200,200");
+}
+
+function myInputEvent(){
+  studentName = this.value();
+}
+
+function addNames(){
+  names_[name_cnt] = studentName;
+  name_cnt+=1
+}
+
+
+function addNewSquareBox() {
+  boxes.push(new Box(windowWidth/2, windowHeight/2, 125, 125));
+}
+
+function addNewRectBox() {
+  boxes.push(new Box(windowWidth/2, windowHeight/2, 125, 62.5));
+}
+
+function addNewVertRectBox() {
+  boxes.push(new Box(windowWidth/2, windowHeight/2, 62.5, 125));
 }
 
 function draw() {
     background(200, 200, 200); // background
     for (var i = 0; i < boxes.length; i++) {
         boxes[i].show();
+        boxes[i].text(name_arr[i%name_arr.length]); //
     }
 }
-
-
 
 function mousePressed() {
     for (var i = 0; i < boxes.length; i++) {
@@ -58,7 +103,6 @@ function mousePressed() {
         boxes[i].yoffset = mouseY - boxes[i].ypos
         print(boxes[i].locked);
     }
-    return false;
 }
 
 function mouseDragged() {
@@ -76,35 +120,91 @@ function mouseReleased() {
     }
 }
 
-function Box(xpos,ypos) {
+function Box(xpos, ypos, boxsizex, boxsizey) {
+
     this.xpos = xpos; // starting x
     this.ypos = ypos; // starting y
-    this.boxsize = 50; // size of square
+    this.boxsizex = boxsizex; // size of square
+    this.boxsizey = boxsizey;
     this.boxover = false;
     this.locked = false;
     this.xoffset = 0;
     this.yoffset = 0;
     rectMode(RADIUS);
 
+
     this.show = function() {
 
-        if (mouseX > this.xpos - this.boxsize && mouseX < this.xpos + this.boxsize &&
-            mouseY > this.ypos - this.boxsize && mouseY < this.ypos + this.boxsize) {
+        if (mouseX > this.xpos - this.boxsizex && mouseX < this.xpos + this.boxsizex &&
+            mouseY > this.ypos - this.boxsizey && mouseY < this.ypos + this.boxsizey) {
             this.boxover = true;
+              fill(96, 153, 255); //box color when mouse hovers
           //  fill(0); // color when dragged
+          stroke(0, 0, 0); // color of border when dragged
+          strokeWeight(3); // thickness of border when dragged
 
             if (mouseIsPressed && this.boxover == true) {
+                fill(96, 153, 255);//box color when mouse preseed
                 stroke(0, 0, 0); // color of border when dragged
                 strokeWeight(3); // thickness of border when dragged
+
+
             } else {
-                noStroke();
+              stroke(0, 0, 0); // color of border when dragged
+              strokeWeight(3); // thickness of border when dragged
             }
 
         } else {
             this.boxover = false;
-            noStroke();
-            fill(121, 157, 216); // color of boxes
+            stroke(0, 0, 0); // color of border when dragged
+            strokeWeight(3); // thickness of border when dragged
+            fill(96, 133, 195); // color of boxes when mouse not over box
         }
-        rect(this.xpos, this.ypos, this.boxsize, this.boxsize, 7);
+        rect(this.xpos, this.ypos, this.boxsizex, this.boxsizey, 7);
+
+        stroke(2);
+        strokeWeight(3);
+        stroke(0,0,0)
+        stroke
+
+      //  var words = [ "apple", "bear", "cat", "dog" ];
+      //  text(words[0],xpos+50,ypos+50);
     };
+
+    this.text = function (text_arr) {
+      push();
+      strokeWeight(0);
+      fill(0,0,0)
+      textSize(20)
+      text(text_arr[0], this.xpos-boxsizex-boxsizex/1.5, this.ypos);
+      text(text_arr[1], this.xpos+boxsizex+5, this.ypos);
+      text(text_arr[2], this.xpos-25, this.ypos-boxsizey-10);
+      text(text_arr[3], this.xpos-25, this.ypos+boxsizey+25);
+      pop();
+    };
+
 }
+
+function shuffle(a) { // this just shuffles an array i got it off of Stack Overflow
+    var j, x, i;
+    for (i = a.length - 1; i > 0; i--) {
+        j = Math.floor(Math.random() * (i + 1));
+        x = a[i];
+        a[i] = a[j];
+        a[j] = x;
+    }
+    return a;
+}
+
+function random_sets(name_arr) { // name_arr is a normal array of strings ['s1', 's2'...]
+    var master_arr = [];
+    for (i = 0; i < name_arr.length; i+=4) { // this 4 is for the number of tables if you want to rewrite the function (please do)
+        var temp = [];
+        for (j = i; j < i+4; j++) { // only 4 ppl allowed per table
+            temp.push(name_arr[j]);
+        }
+        master_arr.push(temp)
+    } // this is a 2 dimensional for loop (used when you have to navigate or build a 2D array
+    // this particular set of for loops is meant to build a 2D array
+    return master_arr; // returns the 2D array (a 2D array is and array of arrays [[items],[more, items],...]
+}// try writing your own version of this, what wrote is frankly not great (there is a story tho)
