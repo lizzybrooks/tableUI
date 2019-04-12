@@ -22,9 +22,10 @@ function setup() {
 
         randomButton.position(windowWidth/2+150, 19);
         randomButton.size(120,40);
-        randomButton.style("color", "blue");
-        randomButton.style("border-radius", "40%");
+        randomButton.style("color", "black");
+        randomButton.style("border-radius", "10%");
         randomButton.style("font-size", "20px");
+        randomButton.style("background-color", "#d8e7ff");
         randomButton.style("cursor","pointer");
         // randomButton.mousePressed(addNames);
         randomButton.mousePressed(function(){
@@ -94,7 +95,7 @@ function addNewVertRectBox() {
 }
 
 function draw() {
-    background(200, 200, 200); // background
+    background(249, 247, 247); // background
     for (var i = 0; i < boxes.length; i++) {
         boxes[i].show();
         boxes[i].text(name_arr[i%name_arr.length]); //
@@ -152,7 +153,7 @@ function Box(xpos, ypos, boxsizex, boxsizey) {
             mouseY > this.ypos - this.boxsizey && mouseY < this.ypos + this.boxsizey) {
             this.boxover = true;
               fill(96, 153, 255); //box color when mouse hovers
-          //  fill(0); // color when dragged
+
           stroke(0, 0, 0); // color of border when dragged
           strokeWeight(3); // thickness of border when dragged
 
