@@ -1,5 +1,5 @@
-let names_ = ['apple', 'pear', 'orange', 'banana', 'iphone', 'android', 'burner', 'Nokia','Fitbit', 'watch', 'rolex', 'clock', 'laptop', 'desktop', 'pc', 'tablet']
-//let names_ = ['','','','','','','','','','','','','','','',''];
+//let names_ = ['apple', 'pear', 'orange', 'banana', 'iphone', 'android', 'burner', 'Nokia','Fitbit', 'watch', 'rolex', 'clock', 'laptop', 'desktop', 'pc', 'tablet']
+let names_ = ['','','','','','','','','','','','','','','',''];
 let name_cnt = 0
 let name_arr = random_sets(shuffle(names_)); // this is where the name array is randomized and set up as a 2D array for later
 
