@@ -1,34 +1,40 @@
 //let names_ = ['apple', 'pear', 'orange', 'banana', 'iphone', 'android', 'burner', 'Nokia','Fitbit', 'watch', 'rolex', 'clock', 'laptop', 'desktop', 'pc', 'tablet']
-let names_ = ['']
+let names_ = ['','','','','','','','','','','','','','','',''];
+let name_cnt = 0
 let name_arr = random_sets(shuffle(names_)); // this is where the name array is randomized and set up as a 2D array for later
 
 var squareButton;
 var rectButton;
 var vertButton;
 var boxes = [];
-var button;
+var randomButton;
 
 
 function setup() {
     // createCanvas(displayWidth,displayHeight);
     createCanvas(windowWidth, windowHeight);
 
-        boxes.push(new Box(windowWidth/4, windowHeight/4, 125, 125)); //bottom left
-        boxes.push(new Box(windowWidth/4, (windowHeight/4)*3, 125, 125)); // top left
-        boxes.push(new Box((windowWidth/4)*3, windowHeight/4, 125, 125)); // bottom right
-        boxes.push(new Box((windowWidth/4)*3, (windowHeight/4)*3, 125, 125)); // top right
+        boxes.push(new Box(windowWidth/3.5, windowHeight/4+50, 125, 125)); //bottom left
+        boxes.push(new Box(windowWidth/3.5, (windowHeight/4)*3+50, 125, 125)); // top left
+        boxes.push(new Box((windowWidth/3.5)*2.5, windowHeight/4+50, 125, 125)); // bottom right
+        boxes.push(new Box((windowWidth/3.5)*2.5, (windowHeight/4)*3+50, 125, 125)); // top right
 
-        button = createButton('randomize');
-        button.position(10, 210);
-        button.size(120,40);
-        button.style("color", "blue");
-        button.style("border-radius", "40%");
-        button.style("font-size", "20px");
-        button.style("cursor","pointer");
-      //  button.style("background-color", 0);
-        button.mousePressed(function(){name_arr = random_sets(shuffle(names_))});
+        randomButton = createButton('randomize');
+
+        randomButton.position(windowWidth/2+150, 19);
+        randomButton.size(120,40);
+        randomButton.style("color", "blue");
+        randomButton.style("border-radius", "40%");
+        randomButton.style("font-size", "20px");
+        randomButton.style("cursor","pointer");
+        // randomButton.mousePressed(addNames);
+        randomButton.mousePressed(function(){
+          addNames();
+          name_arr = random_sets(shuffle(names_))
+        });
+
         squareButton = createButton('New Square Table');
-        squareButton.position(100, 19);
+        squareButton.position(19, 19);
         squareButton.style("cursor","pointer");
         squareButton.mousePressed(addNewSquareBox);
         rectButton = createButton('New Horizontal Rectangle Table');
@@ -42,7 +48,7 @@ function setup() {
 
         var name = createInput('Insert Name Here');
          name.input(myInputEvent);
-         name.position(20,150); //location of search box
+         name.position(windowWidth/2-100, 19); //location of search box
          name.style("font-size", "20px");
          name.style("border-style", "solid");
          name.style("border-width","1px");
@@ -51,35 +57,28 @@ function setup() {
          name.style("padding", "8px");
         // name.style("border", "#ff0000");
         // name.style("background-color", "200,200,200");
-
-
-         var button = createButton('Add Names')
-         button.position(100,100);
-         button.mousePressed(addNames);
-         button.style("cursor","pointer");
-         button.mouseReleased(setup);
-
-
 }
 
 function myInputEvent(){
   studentName = this.value();
 }
+
 function addNames(){
-  names_.push(studentName);
+  names_[name_cnt] = studentName;
+  name_cnt+=1
 }
 
 
 function addNewSquareBox() {
-  boxes.push(new Box(random(windowWidth), random(windowHeight), 125, 125));
+  boxes.push(new Box(windowWidth/2, windowHeight/2, 125, 125));
 }
 
 function addNewRectBox() {
-  boxes.push(new Box(random(windowWidth), random(windowHeight), 125, 62.5));
+  boxes.push(new Box(windowWidth/2, windowHeight/2, 125, 62.5));
 }
 
 function addNewVertRectBox() {
-  boxes.push(new Box(random(windowWidth), random(windowHeight), 62.5, 125));
+  boxes.push(new Box(windowWidth/2, windowHeight/2, 62.5, 125));
 }
 
 function draw() {
@@ -141,13 +140,13 @@ function Box(xpos, ypos, boxsizex, boxsizey) {
         if (mouseX > this.xpos - this.boxsizex && mouseX < this.xpos + this.boxsizex &&
             mouseY > this.ypos - this.boxsizey && mouseY < this.ypos + this.boxsizey) {
             this.boxover = true;
-              fill(121, 157, 216); //box color when mouse hovers
+              fill(96, 153, 255); //box color when mouse hovers
           //  fill(0); // color when dragged
           stroke(0, 0, 0); // color of border when dragged
           strokeWeight(3); // thickness of border when dragged
 
             if (mouseIsPressed && this.boxover == true) {
-                fill(121, 157, 216);//box color when mouse preseed
+                fill(96, 153, 255);//box color when mouse preseed
                 stroke(0, 0, 0); // color of border when dragged
                 strokeWeight(3); // thickness of border when dragged
             } else {
@@ -157,8 +156,9 @@ function Box(xpos, ypos, boxsizex, boxsizey) {
 
         } else {
             this.boxover = false;
-            noStroke();
-            fill(121, 157, 216); // color of boxes when mouse not over box
+            stroke(0, 0, 0); // color of border when dragged
+            strokeWeight(3); // thickness of border when dragged
+            fill(96, 133, 195); // color of boxes when mouse not over box
         }
         rect(this.xpos, this.ypos, this.boxsizex, this.boxsizey, 7);
 
