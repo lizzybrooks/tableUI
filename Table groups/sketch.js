@@ -31,7 +31,7 @@ function setup() {
         squareButton.position(100, 19);
         squareButton.style("cursor","pointer");
         squareButton.mousePressed(addNewSquareBox);
-        rectButton = createButton('New Horizaontal Rectangle Table');
+        rectButton = createButton('New Horizontal Rectangle Table');
         rectButton.style("cursor","pointer");
         rectButton.position(19, 40);
         rectButton.mousePressed(addNewRectBox);
