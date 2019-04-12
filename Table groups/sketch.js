@@ -28,10 +28,10 @@ function setup() {
         randomButton.style("font-size", "20px");
         randomButton.style("cursor","pointer");
         // randomButton.mousePressed(addNames);
-        randomButton.mousePressed(function(){
-          addNames();
-          name_arr = random_sets(shuffle(names_))
-        });
+        // randomButton.mousePressed(function(){
+        //   addNames();
+        //   name_arr = random_sets(shuffle(names_))
+        // });
 
         squareButton = createButton('New Square Table');
         squareButton.position(19, 19);
@@ -57,6 +57,11 @@ function setup() {
          name.style("padding", "8px");
         // name.style("border", "#ff0000");
         // name.style("background-color", "200,200,200");
+        randomButton.mousePressed(function(){
+          addNames();
+          name_arr = random_sets(shuffle(names_))
+          name.value("");
+        });
 }
 
 function myInputEvent(){
