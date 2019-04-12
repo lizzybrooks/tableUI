@@ -14,18 +14,19 @@ function setup() {
     // createCanvas(displayWidth,displayHeight);
     createCanvas(windowWidth, windowHeight);
 
-        boxes.push(new Box(windowWidth/3.5, windowHeight/4+50, 125, 125)); //bottom left
-        boxes.push(new Box(windowWidth/3.5, (windowHeight/4)*3+50, 125, 125)); // top left
-        boxes.push(new Box((windowWidth/3.5)*2.5, windowHeight/4+50, 125, 125)); // bottom right
-        boxes.push(new Box((windowWidth/3.5)*2.5, (windowHeight/4)*3+50, 125, 125)); // top right
+        boxes.push(new Box(windowWidth/3.2, windowHeight/4+50, 125, 125)); //bottom left
+        boxes.push(new Box(windowWidth/3.2, (windowHeight/4)*3+50, 125, 125)); // top left
+        boxes.push(new Box((windowWidth/3.7)*2.5, windowHeight/4+50, 125, 125)); // bottom right
+        boxes.push(new Box((windowWidth/3.7)*2.5, (windowHeight/4)*3+50, 125, 125)); // top right
 
         randomButton = createButton('randomize');
 
         randomButton.position(windowWidth/2+150, 19);
         randomButton.size(120,40);
-        randomButton.style("color", "blue");
-        randomButton.style("border-radius", "40%");
+        randomButton.style("color", "black");
+        randomButton.style("border-radius", "10%");
         randomButton.style("font-size", "20px");
+        randomButton.style("background-color", "#d8e7ff");
         randomButton.style("cursor","pointer");
         // randomButton.mousePressed(addNames);
         randomButton.mousePressed(function(){
@@ -35,14 +36,27 @@ function setup() {
 
         squareButton = createButton('New Square Table');
         squareButton.position(19, 19);
+        squareButton.style("color", "black");
+        squareButton.style("border-radius", "10%");
+        squareButton.style("font-size", "20px");
+        squareButton.style("background-color", "#d8e7ff");
         squareButton.style("cursor","pointer");
         squareButton.mousePressed(addNewSquareBox);
         rectButton = createButton('New Horizontal Rectangle Table');
+        rectButton.style("color", "black");
+        rectButton.style("border-radius", "10%");
+        rectButton.style("font-size", "20px");
+        rectButton.style("background-color", "#d8e7ff");
         rectButton.style("cursor","pointer");
-        rectButton.position(19, 40);
+        rectButton.position(19, 60);
         rectButton.mousePressed(addNewRectBox);
         vertButton = createButton('New Vertical Rectangle Table');
-        vertButton.position(19, 60 );
+        vertButton.position(19, 100 );
+        vertButton.style("color", "black");
+        vertButton.style("color", "black");
+        vertButton.style("border-radius", "10%");
+        vertButton.style("font-size", "20px");
+        vertButton.style("background-color", "#d8e7ff");
         vertButton.style("cursor","pointer");
         vertButton.mousePressed(addNewVertRectBox);
 
@@ -82,7 +96,7 @@ function addNewVertRectBox() {
 }
 
 function draw() {
-    background(200, 200, 200); // background
+    background(249, 247, 247); // background
     for (var i = 0; i < boxes.length; i++) {
         boxes[i].show();
         boxes[i].text(name_arr[i%name_arr.length]); //
@@ -141,7 +155,7 @@ function Box(xpos, ypos, boxsizex, boxsizey) {
             mouseY > this.ypos - this.boxsizey && mouseY < this.ypos + this.boxsizey) {
             this.boxover = true;
               fill(96, 153, 255); //box color when mouse hovers
-          //  fill(0); // color when dragged
+
           stroke(0, 0, 0); // color of border when dragged
           strokeWeight(3); // thickness of border when dragged
 
