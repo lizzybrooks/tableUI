@@ -5,4 +5,7 @@ Description: Table Groups is a program designed for teachers. It allows the teac
 
 Visual:
 
-Snipet of Code?: 
+Snipet of Code: 
+
+Contributions:
+We are open to contributions if you want to made edits to this code. If you want to pursue that idea, you may fork our repository and propose your new code to us. If we approve of your edits, then we will merge your code into our master branch. 
