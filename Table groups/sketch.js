@@ -25,7 +25,6 @@ function setup() {
         randomButton.style("cursor","pointer");
 
 
-
         var name = createInput('Insert Name Here');
          name.input(myInputEvent);
          name.position(windowWidth/4-100, 19); //location of search box
@@ -58,24 +57,30 @@ function addNames(){
 }
 
 
-function addNewSquareBox() {
-  boxes.push(new Box(windowWidth/2, windowHeight/2, 125, 125));
-}
-
-function addNewRectBox() {
-  boxes.push(new Box(windowWidth/2, windowHeight/2, 125, 62.5));
-}
-
-function addNewVertRectBox() {
-  boxes.push(new Box(windowWidth/2, windowHeight/2, 62.5, 125));
-}
+// function addNewSquareBox() {
+//   boxes.push(new Box(windowWidth/2, windowHeight/2, 125, 125));
+// }
+//
+// function addNewRectBox() {
+//   boxes.push(new Box(windowWidth/2, windowHeight/2, 125, 62.5));
+// }
+//
+// function addNewVertRectBox() {
+//   boxes.push(new Box(windowWidth/2, windowHeight/2, 62.5, 125));
+// }
 
 function draw() {
-    background(249, 247, 247); // background
+    background(247, 248, 249); // background
     for (var i = 0; i < boxes.length; i++) {
         boxes[i].show();
         boxes[i].text(name_arr[i%name_arr.length]); //
     }
+    fill(202, 205, 209);
+    rect(25, 395, 25, 65);
+    fill('black');
+    textSize(32);
+    strokeWeight(0.1);
+    text('door', 55, 400);
 }
 
 function mousePressed() {
