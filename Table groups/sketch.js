@@ -1,11 +1,7 @@
 //let names_ = ['apple', 'pear', 'orange', 'banana', 'iphone', 'android', 'burner', 'Nokia','Fitbit', 'watch', 'rolex', 'clock', 'laptop', 'desktop', 'pc', 'tablet']
 let names_ = ['','','','','','','','','','','','','','','',''];
-let name_cnt = 0
 let name_arr = random_sets(shuffle(names_)); // this is where the name array is randomized and set up as a 2D array for later
 
-var squareButton;
-var rectButton;
-var vertButton;
 var boxes = [];
 var randomButton;
 
@@ -20,54 +16,26 @@ function setup() {
 
         randomButton = createButton('randomize');
 
-        randomButton.position(windowWidth/2+150, 19);
+        randomButton.position(windowWidth-250, 19);
         randomButton.size(120,40);
         randomButton.style("color", "black");
         randomButton.style("border-radius", "10%");
         randomButton.style("font-size", "20px");
         randomButton.style("background-color", "#d8e7ff");
         randomButton.style("cursor","pointer");
-        // randomButton.mousePressed(addNames);
-        // randomButton.mousePressed(function(){
-        //   addNames();
-        //   name_arr = random_sets(shuffle(names_))
-        // });
 
-        squareButton = createButton('New Square Table');
-        squareButton.position(19, 19);
-        squareButton.style("color", "black");
-        squareButton.style("border-radius", "10%");
-        squareButton.style("font-size", "20px");
-        squareButton.style("background-color", "#d8e7ff");
-        squareButton.style("cursor","pointer");
-        squareButton.mousePressed(addNewSquareBox);
-        rectButton = createButton('New Horizontal Rectangle Table');
-        rectButton.style("color", "black");
-        rectButton.style("border-radius", "10%");
-        rectButton.style("font-size", "20px");
-        rectButton.style("background-color", "#d8e7ff");
-        rectButton.style("cursor","pointer");
-        rectButton.position(19, 60);
-        rectButton.mousePressed(addNewRectBox);
-        vertButton = createButton('New Vertical Rectangle Table');
-        vertButton.position(19, 100 );
-        vertButton.style("color", "black");
-        vertButton.style("color", "black");
-        vertButton.style("border-radius", "10%");
-        vertButton.style("font-size", "20px");
-        vertButton.style("background-color", "#d8e7ff");
-        vertButton.style("cursor","pointer");
-        vertButton.mousePressed(addNewVertRectBox);
+
 
         var name = createInput('Insert Name Here');
          name.input(myInputEvent);
-         name.position(windowWidth/2-100, 19); //location of search box
+         name.position(windowWidth/4-100, 19); //location of search box
          name.style("font-size", "20px");
          name.style("border-style", "solid");
          name.style("border-width","1px");
          name.style("border-color", "blue");
          name.style("border-radius", "4px");
          name.style("padding", "8px");
+         name.style("width", "60%");
         // name.style("border", "#ff0000");
         // name.style("background-color", "200,200,200");
         randomButton.mousePressed(function(){
@@ -78,12 +46,15 @@ function setup() {
 }
 
 function myInputEvent(){
-  studentName = this.value();
+  studentNames = this.value();
 }
 
 function addNames(){
-  names_[name_cnt] = studentName;
-  name_cnt+=1
+  names_= split(studentNames, ',');
+  x_dif = (4*boxes.length) - split(studentNames, ',').length;
+  for (i = 0; i < x_dif; i++){
+    names_.push("");
+  }
 }
 
 
@@ -186,8 +157,6 @@ function Box(xpos, ypos, boxsizex, boxsizey) {
         stroke(0,0,0)
         stroke
 
-      //  var words = [ "apple", "bear", "cat", "dog" ];
-      //  text(words[0],xpos+50,ypos+50);
     };
 
     this.text = function (text_arr) {
