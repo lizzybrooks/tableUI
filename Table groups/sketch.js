@@ -168,6 +168,9 @@ function Box(xpos, ypos, boxsizex, boxsizey) {
       text(text_arr[1], this.xpos+boxsizex+5, this.ypos);
       text(text_arr[2], this.xpos-25, this.ypos-boxsizey-10);
       text(text_arr[3], this.xpos-25, this.ypos+boxsizey+25);
+      if (names_.length>16){
+      text(text_arr[4], this.xpos-15, this.ypos);
+      }
       pop();
     };
 
@@ -188,7 +191,7 @@ function random_sets(name_arr) { // name_arr is a normal array of strings ['s1',
     var master_arr = [];
     for (i = 0; i < name_arr.length; i+=4) { // this 4 is for the number of tables if you want to rewrite the function (please do)
         var temp = [];
-        for (j = i; j < i+4; j++) { // only 4 ppl allowed per table
+        for (j = i; j < i+5; j++) { // only 4 ppl allowed per table
             temp.push(name_arr[j]);
         }
         master_arr.push(temp)
