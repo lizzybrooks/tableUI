@@ -162,8 +162,8 @@ class Box {
         textSize(20);
         text(text_arr[0], this.xpos - this.boxsizex - this.boxsizex / 1.5, this.ypos);
         text(text_arr[1], this.xpos + this.boxsizex + 5, this.ypos);
-        text(text_arr[2], this.xpos - 25, this.ypos - boxsizey - 10);
-        text(text_arr[3], this.xpos - 25, this.ypos + boxsizey + 25);
+        text(text_arr[2], this.xpos - 25, this.ypos - this.boxsizey - 10);
+        text(text_arr[3], this.xpos - 25, this.ypos + this.boxsizey + 25);
         if (names_.length > 16) {
             text(text_arr[4], this.xpos - 15, this.ypos);
         }
