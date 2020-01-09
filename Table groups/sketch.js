@@ -160,8 +160,8 @@ class Box {
         strokeWeight(0);
         fill(0, 0, 0);
         textSize(20);
-        text(text_arr[0], this.xpos - boxsizex - boxsizex / 1.5, this.ypos);
-        text(text_arr[1], this.xpos + boxsizex + 5, this.ypos);
+        text(text_arr[0], this.xpos - this.boxsizex - this.boxsizex / 1.5, this.ypos);
+        text(text_arr[1], this.xpos + this.boxsizex + 5, this.ypos);
         text(text_arr[2], this.xpos - 25, this.ypos - boxsizey - 10);
         text(text_arr[3], this.xpos - 25, this.ypos + boxsizey + 25);
         if (names_.length > 16) {
